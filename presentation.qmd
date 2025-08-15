@@ -1,7 +1,10 @@
 ---
-title: "Presentation"
+title: |
+   | Business Analytics:
+   | Sample Lecture 
+subtitle: "2025 Open Day"
 author: "Lachlan Deer"
-institute: "Somewhere"
+institute: "University of Melbourne"
 format: 
   beamer: 
     aspectratio: 32
@@ -9,34 +12,245 @@ format:
     theme: mousteau
 ---
 
-# In the morning
+## The Business Analytics Process
 
-## Getting up
+\vspace{0.75cm}
 
-- Turn off alarm
-- Get out of bed
+> “Data are widely available; what is scarce is the ability to extract wisdom from them.” — Hal Varian, Chief Economist at Google
 
-## Breakfast
+1.  **Defining the Problem** — What decision needs to be made? What are the options? What does success look like?
 
-- Eat eggs
-- Drink coffee
+2.  **Collecting and Cleaning Data** — Gathering relevant data sources and ensuring they’re accurate, complete, and reliable.
 
-# In the evening
+3.  **Analyzing Data Appropriately** — Identify patterns, test hypotheses, and quantify trade-offs.
 
-## Dinner
+4.  **Communicating Insights** — Tell persuasive, relatable stories with data that clarify the decision at hand and guide action.
 
-- Eat spaghetti
-- Drink wine
+5.  **Acting to Create Value** — The goal is not analysis for its own sake, but to generate insights that drive strategy, improve operations, or better serve customers.
 
-## Going to sleep
 
-- Get in bed
-- Count sheep
+## Three Types of Business Analytics
 
-# Before I Sleep
+**Fundamental goal:** to make smarter, more confident choices in an uncertain world.
 
-## I write equations
+-   **\alert{Different business problems require}** different types of insight—and therefore, **\alert{different analytical tools}**.
 
-$$
-y = x \beta + \varepsilon
-$$
+Broadly categorized into 3 types of business analytics
+
+1.  Descriptive analytics
+2.  Predictive Analytics
+3.  **\alert{Causal Analytics}** -- the focus of this lecture
+
+## 
+
+```{r, echo = FALSE, fig.align = "center", out.width="80%"}
+url <- "https://mailmeteor.com/assets/img/meta/email-personalization.png"
+knitr::include_graphics(url)
+```
+
+## Lachlan's Inbox ...
+
+```{r, echo = FALSE, fig.align = "center", out.width="100%"}
+url <- "figs/lachlans_inbox.png"
+knitr::include_graphics(url)
+```
+
+## Motivation
+
+\alert{Business question}: Does adding personalized content improve email effectiveness?
+
+**Why study this?** Personalized content $\rightarrow$ noninformative content
+
+-   **Prevailing wisdom** is that noninformative content **should not influence consumer behaviour**
+-   Most businesses engage in this practice
+-   Email marketers have access to this information
+
+## One way forward
+
+How we're going to answer this question:
+
+-   Run an **experiment in the field**
+-   **Varies personalization** & across contexts
+
+Discussion based on [**\alertc{Sahni, Wheeler and Chintagunta (2018)}**](https://pubsonline.informs.org/doi/10.1287/mksc.2017.1066)
+
+## Field Experiments in One Slide
+
+**Core idea of experiments**: \alert{Randomization into treatment}
+
+```{r, echo = FALSE, fig.align = "center", out.width="45%"}
+url <- "figs/random_allocation.png"
+knitr::include_graphics(url)
+```
+
+PLUS the **measurement of outcome variable(s)**
+
+-   Which have been (carefully) selected
+
+**Comparison of average behaviour** between treatments **delivers causal effects**
+
+-   Subject to some assumptions
+
+**\alertc{ What about the "Field"}**? Run in **"real world" environments**, rather than computer labs
+
+## Outcome Variable Selection
+
+\vspace{-5cm}
+
+\begin{center}
+\textbf{\alert{What Outcomes Could We Measure?}}
+\end{center}
+
+## What Outcomes Could We Measure?
+
+Email Marketers **have access to**:
+
+-   Opens
+-   Leads
+-   Unsubscribes
+-   Number of emails sent
+
+And **can construct ratios** using these...
+
+-   Opens / Sent
+-   Leads / Opens
+
+and so on ...
+
+## Experiment 1: Context
+
+```{r, echo = FALSE, fig.align = "center", out.width="60%"}
+url <- "figs/experiment_1_email.png"
+knitr::include_graphics(url)
+```
+
+\begin{center}
+$\implies$ \textbf{Focus: acquiring new customers}
+\end{center}
+
+## Experiment 1: Design
+
+**Control Group**: Typical email, no name added to subject line
+
+Eg: "Learn Financial Modeling from Industry Experts"
+
+**Treatment Group**: Names explicitly added to email's subject line
+
+Eg: "Jack, Learn Financial Modeling from Industry Experts"
+
+## Experiment 1: Results
+
+```{r, echo = FALSE, fig.align = "center", out.width="100%"}
+url <- "figs/experiment_1_results.png"
+knitr::include_graphics(url)
+```
+
+## Mechanisms: Answering the "Why"
+
+\vspace{-4cm}
+
+**Lurking question**: Why did we observe this difference?
+
+-   Academic wisdom suggests we shouldn't have seen differences
+-   We **want to know why** a difference occurs
+-   The "why" is known as \alert{"the mechanism"}
+
+## Potential Mechanisms In the Email Context
+
+The authors propose 3 mechanisms could be driving their results:
+
+-   \[**A**\] Drawing **a**ttention to the email
+-   \[**O**\] Shape **o**pinions of reciever / positive cue
+-   \[**E**\] Increased **e**laboration via recipient processing
+
+**Question 1**: Are these **really** the only possible mechanisms?
+
+**Question 2**: What are the **consequences** of not finding the right mechanism?
+
+## Mechanisms Predict Different Outcomes
+
+Different mechanisms $\rightarrow$ different patterns in outcome variables
+
+-   Increased **opens** of personalized emails
+    -   Consistent with A, O, E
+-   **Unsubscriptions**
+    -   Increase under A, decrease under O and E
+-   **Leads**
+    -   increase under E and O ...
+    -   ... more evidence for E if even more leads when a discount mentioned
+
+## An Experiment to Isolate the Mechanism
+
+```{r, echo = FALSE, fig.align = "center", out.width="70%"}
+url <- "figs/experiment_4_design.png"
+knitr::include_graphics(url)
+```
+
+**Doesn't mention discount size** due to worries of being spam filtered
+
+## An Experiment to Isolate the Mechanism: Context
+
+```{r, echo = FALSE, fig.align = "center", out.width="100%"}
+url <- "figs/experiment_4_email.png"
+knitr::include_graphics(url)
+```
+
+## An Experiment to Isolate the Mechanism:  Results
+
+```{r, echo = FALSE, fig.align = "center", out.width="60%"}
+url <- "figs/experiment_4_teststats.png"
+knitr::include_graphics(url)
+```
+
+\vspace{-0.5cm}
+
+**Statistical Tests**:
+
+-   **A vs B**: adding name alone has no significant effect
+-   **B vs D**: adding name in presence of discount increases leads
+
+$\implies$ name increases engagement $\implies$ via elaboration mechanism
+
+## Is it THAT easy? ... Likely Not
+
+```{r, echo = FALSE, fig.align = "center", out.width="60%"}
+url <- "figs/marketing_letters_title.png"
+knitr::include_graphics(url)
+```
+
+```{r, echo = FALSE, fig.align = "center", out.width="60%"}
+url <- "figs/marketing_letters_abstract.png"
+knitr::include_graphics(url)
+```
+
+Paper: [**\alertc{Defau \& Zauner (2023)}**](https://link.springer.com/article/10.1007/s11002-023-09701-7)
+
+## Is it THAT easy? ... Likely Not
+
+\begin{center}
+Marketers re-'discovered' \textbf{\alert{The Novelty Effect}}
+\end{center}
+
+"...But in the last years, this \alertc{marketing trick has become a common practice} in email marketing, and therefore, it might be that the behavior of recipients changed as they got used to it... \alertb{we find no indication} that using the **first name of the recipient** in the subject line **has a positive effect** on opening rates orclick-through rates"
+
+BUT
+
+"... we do find that **using the surname of the recipient has a positive effect on opening rates and click-through rates**; an indication that similar marketing techniques still have potential, but that they need to be more creative and surprising"
+
+
+## Want to learn more about the BA program?
+
+
+\begin{center}
+  \includegraphics[width=0.45\linewidth]{figs/qr_code_ba.png}
+
+  \textbf{The Business Analytics Major}
+\end{center}
+
+## Want to learn more about this class?
+
+\begin{center}
+  \includegraphics[width=0.45\linewidth]{figs/qr_code_fba.png}
+
+  \textbf{CMCE-10002: Foundations of Business Analytics}
+\end{center}
